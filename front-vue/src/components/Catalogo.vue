@@ -63,7 +63,11 @@ export default {
       axios.get('http://localhost/api/product?page=' + page).then(response => {
         this.products = response.data.data.data;
       }).catch(err => {
-        this.error = err.data
+        if(!err.data) {
+          this.error = 'Erro ao se conectar com a API';
+        } else {
+          this.error = err.data;
+        }
       })
     }
   },
