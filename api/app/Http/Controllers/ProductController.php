@@ -16,7 +16,8 @@ class ProductController extends Controller
     {
         try {
 
-            $product = Product::query();
+            $product = Product::query()
+                ->with('inventory:id,product_id,size');
 
             if(!is_null($request->get('name'))) {
                 $product->where('name', 'LIKE', "%".$request->get('name')."%");
